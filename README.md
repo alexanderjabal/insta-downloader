@@ -1,6 +1,6 @@
 # instaloader
 
-A lightweight Python 3 command line application to download private Instagram videos.
+A lightweight Python 3 command line application to download private Instagram videos. Supports posts with single and multiple videos.
 
 ## Usage
 
