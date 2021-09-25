@@ -12,4 +12,4 @@ To download a private video a session ID of a user that follows the private acco
 
 ## Requirements
 
-This program is largely built using built-in modules. The only third party module used is the [requests](https://pypi.org/project/requests/) module used for conveniently handling the authentication needed for accessing the private post.
+This program is largely built using built-in modules. The only third party module used is the [requests](https://pypi.org/project/requests/) module which is used for conveniently handling the authentication needed for accessing the private post.
