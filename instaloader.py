@@ -24,10 +24,10 @@ def download(url, sessionid, output, filename=""):
 		end = url.find(".mp4") + 4
 
 		if not filename:
-			urlretrieve(video_urls[download_choice - 1], args.path + url[55:end]) # No filename specified, use default filename
+			urlretrieve(url, args.path + url[55:end]) # No filename specified, use default filename
 
 		else:
-			urlretrieve(video_urls[download_choice - 1], args.path + filename) # Save video to specified filename
+			urlretrieve(url, args.path + filename) # Save video to specified filename
 
 	else:
 		url = video_urls[0]
