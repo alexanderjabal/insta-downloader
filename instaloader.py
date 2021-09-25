@@ -1,16 +1,17 @@
 import os
+import sys
+import argparse
 import urllib
 from urllib.request import urlretrieve
 import requests
-import argparse
+
 
 def download(url, sessionid, output, filename=""):
 	cookies = {"sessionid": sessionid}
-
 	video_urls = []
 	r = requests.get(url, cookies=cookies)
+	
 	for line in r.text.splitlines(): 
-		
 		if "video_url" in line: # Find the line with "video_url" strings
 			for item in line.split(","): # Split line into list for indexing video urls
 				if item.startswith('"video_url":'): # Loop through all items and find all video urls
@@ -21,6 +22,7 @@ def download(url, sessionid, output, filename=""):
 		download_choice = int(input(f"Which video do you want to download? (1-{len(video_urls)}): " ))
 		url = video_urls[download_choice - 1]
 		end = url.find(".mp4") + 4
+
 		if not filename:
 			urlretrieve(video_urls[download_choice - 1], args.path + url[55:end]) # No filename specified, use default filename
 
@@ -37,8 +39,6 @@ def download(url, sessionid, output, filename=""):
 		else:
 			urlretrieve(url, args.path + filename) # Save video to specified filename
 
-
-	# pprint(video_urls)
 	print(f"\nSuccesfully saved to {output}")
 
 if __name__ == "__main__":
@@ -51,11 +51,11 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 	if not args.url:
 		print("\nURL is required, pass URL with -u|--url <url>")
-		exit()
+		sys.exit()
 
 	elif not args.sessionid:
 		print("\nSession ID is required, pass session ID with -s|--sessionid <id>")
-		exit()
+		sys.exit()
 
 	if not args.path:
 		args.path = os.getenv("USERPROFILE") + "\\Downloads\\"
@@ -63,6 +63,9 @@ if __name__ == "__main__":
 	if not args.path[-1] == "\\":
 		args.path += "\\"
 
+	try:
+		download(args.url, args.sessionid, args.path, args.output)
 
-
-	download(args.url, args.sessionid, args.path, args.output)
+	except KeyboardInterrupt:
+		print("\nKeyboard interrupt received, exiting.")
+		sys.exit()
