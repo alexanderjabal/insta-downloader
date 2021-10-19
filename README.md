@@ -12,6 +12,8 @@ To download a private video a valid session ID cookie value of a user that follo
 
 ## Requirements
 
+Requires Python 3.6 or later.
+
 This program is largely built using built-in modules. The only third party module used is the [requests](https://pypi.org/project/requests/) module which is used for conveniently handling the authentication needed for accessing the private post.
 
 ## To do
